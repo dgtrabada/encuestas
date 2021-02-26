@@ -1,0 +1,18 @@
+<h2>Área para miembros</h2>
+
+<p>
+    Bienvenido <b>{{request.user.username}}</b>, 
+    esta página es exclusiva para usuarios registrados.
+</p>
+
+{% if request.user.username == "madrid" %}
+  <form action="{% url 'polls:crear_encuestas' %}" method="post">
+  {% csrf_token %}
+  <input type="submit" value="crear encuestas"> 
+ Si la encuesta no existe se creará
+  </form>
+  <br>
+
+{% endif %}
+
+<a href="/logout">Cerrar sesión</a>

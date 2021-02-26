@@ -1,0 +1,25 @@
+Bienvenido <b>{{ request.user.username }} {{ request.user.first_name }}</b>,
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<ul>
+{% for questionarie in questionarie_list %} 
+
+{% if request.user.username == "madrid" %}
+	<li><a href="{% url 'polls:detail' questionarie.id  %}">{{ questionarie.questionarie_text }}</a>  
+		{{ questionarie.questionarie_group }}
+		  {{ questionarie.id }}
+		<a href="{% url 'polls:resultados' questionarie.id  %}">resultados</a>
+	</li>
+{% else %}
+{% if request.user.first_name == questionarie.questionarie_group %}
+<li><a href="{% url 'polls:detail' questionarie.id  %}">{{ questionarie.questionarie_text }}</a> </li>
+{% endif %}
+{% endif %}
+{% endfor %}
+<br>
+</ul>
+
+

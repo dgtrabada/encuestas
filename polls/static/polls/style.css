@@ -1,0 +1,17 @@
+li a {
+    color: green;
+}
+body {
+  color: black;
+}
+
+
+h2 {
+  color: dim grey;
+  font-size: 16px;
+}
+
+h1 {
+  color: black;
+  font-size: 24px;
+}

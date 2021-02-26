@@ -1,0 +1,37 @@
+<h2>Área para miembros</h2>
+
+<p>
+    Bienvenido <b>{{request.user.username}}</b>, 
+</p>
+<form action="{% url 'polls:activar_usuarios' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="activar usuarios">
+Esta acción activará todos los usuarios
+</form>
+
+</p>
+<form action="{% url 'polls:cambiar_passwd' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="cambiar password estudiantes, docentes y familiares pas">
+</form>
+
+</p>
+<form action="{% url 'polls:crear_usuarios' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="chequear y crear usuarios que no existan">
+</form>
+
+
+<hr />
+usuario &nbsp; contraseña &nbsp; activo
+{% for user in user_list %}
+{{ user.username }} &nbsp;
+{{ user.last_name }} &nbsp;
+{{ user.is_active }} &nbsp; 
+{{ user.first_name }}
+<br>
+{% endfor %}
+
+
+
+<a href="/logout">Cerrar sesión</a>

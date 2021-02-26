@@ -1,0 +1,61 @@
+
+{% load poll_extras %}
+{% load static %}
+<ul>
+
+{% for informe in resultado %}
+{% for i in informe %}
+{% for j in i %}
+{% if "Cuestionario" in j %}
+<h2> {{ j }}<h2>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+<TABLE BORDER CELLPADDING=10 CELLSPACING=0>
+{% for i in informe %}
+  <tr>
+   {% for j in i %}
+   {% if "Cuestionario" in j %}
+   <td> {{ "" }}</td>
+     {% else %}
+    	<td> {{ j|default:"" }}</td>
+     {% endif %}
+   {% endfor %}
+  </tr>
+{% endfor %}
+</table>
+{% endfor %}
+
+
+{% for informe in valor_medio %}
+{% for i in informe %}
+{% for j in i %}
+{% if "Resumen" in j %}
+<h2> {{ j }}<h2>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+<TABLE BORDER CELLPADDING=10 CELLSPACING=0>
+{% for i in informe %}
+  <tr>
+   {% for j in i %}
+   {% if "Cuestionario" in j %}
+   <td> {{ "" }}</td>
+     {% else %}
+    	<td> {{ j|default:"" }}</td>
+     {% endif %}
+   {% endfor %}
+  </tr>
+{% endfor %}
+</table>
+{% endfor %}
+
+
+
+
+
+
+</ul>
+

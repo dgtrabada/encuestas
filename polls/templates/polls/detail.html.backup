@@ -1,0 +1,60 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<ul>
+<form action="{% url 'polls:votar'  questionarie_id %}" metdod="post">
+{% csrf_token %} 
+<table style="widtd:100%">
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<ul>
+<form action="{% url 'polls:votar'  questionarie_id %}" metdod="post">
+{% csrf_token %} 
+
+<table style="widtd:100%" text-align="left">
+<tr>
+{% for question in question_list %}
+ {% if question.question_type == "Label" %}
+ 
+ <th> {{ question.question_text }}</th>
+ <td> &nbsp; 1 </td>
+ <td> &nbsp; 2 </td>
+ <td> &nbsp; 3</td>
+ <td> &nbsp; 4</td>
+ 
+ {% else %}
+ <td>
+ {{ question.question_text }} 
+ </td>
+ {% endif %}
+    {% if question.question_type == "Choice" %}
+      {% for choice in question.choice_set.all %}
+        <td>
+        <input type="radio" name="{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+        </td>
+      {% endfor %}
+    {% endif %}
+
+    {% if question.question_type == "Choice4" %}
+      {% for choice in question.choice_set.all %}
+        <td>
+        <input type="radio" name="{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}"></label>
+	</td>
+      {% endfor %}
+    {% endif %}
+ 
+    {% if question.question_type == "Text" %}
+<td colspan="4">
+    <input type="textarea" name="{{question.id}}" id="Text{{ forloop.counter }}" rows="2" cols="100">
+	</td>
+    {% endif %}
+</tr>
+{% endfor %}
+</table>
+<input type="submit" value="Enviar">
+</form>
+</ul>
+

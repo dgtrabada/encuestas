@@ -1,0 +1,56 @@
+
+{% load poll_extras %}
+{% load static %}
+
+<h1>Resultados de la encuesta del grupo {{ questionarie_group }} </h1>
+Nº de contestaciones : {{ ntotal }} 
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <ul>
+    <table style="widtd:100%;text-align:left">
+     {% for question in question_list %}
+ 	{% if question.question_type == "Label" %}
+       <tr>
+ 	<th><h2> {{ question.question_text }}</h2></th>
+	<!--	<td><b>1</b></td>
+	<td><b>2</b></td>
+	<td><b>3</b></td>
+	<td><b>4</b></td> -->
+	<td><b>{{ questionarie_group }}</b></td>
+       </tr>
+    	{% endif %}
+ 	{% if question.question_type == "Choice4" or question.question_type == "Choice"  %}
+       <tr>
+       <td>{{ question.question_text }}</td>
+       <!-- {% for choice in question.choice_set.all %}
+           <td>{{ choice.votes }} </td>
+	   {% endfor %}--> 
+	 <td>{{ question.value }} <td>
+       </tr>
+       {% endif %}
+     {% endfor %}
+   </table>
+<!--
+    {% for question in question_list %}
+    {% if question.question_type == "Choice"%}
+    {{ question.question_text }} valor =  {{ question.value }} <br>
+    {% for choice in question.choice_set.all %}
+    {{ choice.choice_text }} {{ choice.votes }} <br> 
+     {% endfor %} 
+     {% endif %}
+     {% endfor %}
+-->
+
+    {% for question in question_list %}
+    {% if question.question_type == "Text" %}
+     {% with question.question_answer|split:"; usuario =" as lines %}
+        {% for l in lines %}
+	{{ l }}<br>
+        {% endfor %}
+      {% endwith %}
+    {% endif %}
+    {% endfor %}
+    </ul>
+
+

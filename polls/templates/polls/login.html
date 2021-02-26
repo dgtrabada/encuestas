@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load static %}
+<style> 
+</style> 
+<form method="POST">
+<h2>
+<img src="{% static "polls/quevedo.png" %}" alt="Quevedo" width="60" height="40">
+Iniciar sesión</h2>
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Login</button>
+</form>
+<hr />
