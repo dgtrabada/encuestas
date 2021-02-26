@@ -1,4 +1,4 @@
-git clone https://github.com/dgtrabada/encuestas/edit/main/README
+git clone https://github.com/dgtrabada/encuestas
 python3 manage.py makemigrations polls
 python3 manage.py migrate
 python3 manage.py createsuperuser
