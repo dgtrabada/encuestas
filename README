@@ -2,19 +2,16 @@ git clone https://github.com/dgtrabada/encuestas
 python3 manage.py makemigrations polls
 python3 manage.py migrate
 python3 manage.py createsuperuser
-dentro de mysite/settings.py 
+#dentro de mysite/settings.py 
+#ALLOWED_HOSTS = ['10.0.0.13']
 
 python3 manage.py runserver 10.0.0.13:8069
-ALLOWED_HOSTS = ['10.0.0.13']
 
-vamos como administrador a Gestión de usuarios / creamos los usuarios que no existan
-
-
-borrar encuestas : http://encuestas.iesquevedo.es/admin
-vaciar encuestas
-# python3 manage.py shell < vaciar_cuestionarios.py 
-
-
+vamos como administrador (madrid) a Gestión de usuarios / creamos los usuarios que no existan
+vamos como administrador (madrid) a Crear encuestas / Crear encuestas
+#borrar encuestas/usuarios : http://encuestas.iesquevedo.es/admin
+#vaciar encuestas
+python3 manage.py shell < vaciar_cuestionarios.py 
 
 #login 10.0.0.13:8069
 #admin 10.0.0.13:8069/admin/
