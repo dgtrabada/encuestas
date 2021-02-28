@@ -92,7 +92,7 @@ def votar(request,questionarie_id):
                     question.save()
             Questionarie_selected.save()
             print('ntotal',question.total)
-            if request.user.username == "madrid" :
+            if request.user.is_superuser :
                 return render(request, 'polls/resultados.html',{
                 'questionarie_id': questionarie_id,
                 'question_list':  Questionarie_selected.question_set.all(),
@@ -136,7 +136,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            if self.request.user.username == "madrid":
+            if self.request.user.is_superuser:
                 return Questionarie.objects.filter()
             else:
                 if self.request.user.is_active:
@@ -325,7 +325,7 @@ def view_pdf(request):
 
 def gestion_encuestas(request):
     if request.user.is_authenticated:
-        if request.user.username == "madrid":
+        if request.user.is_superuser:
           return render(request, "polls/crear_encuestas.html")     
         else:
           return render(request, "polls/welcome.html")
@@ -334,7 +334,7 @@ def gestion_encuestas(request):
 
 def crear_usuarios(request):
     if request.user.is_authenticated:
-        if request.user.username == "madrid":
+        if request.user.is_superuser:
             all_user=[]
             for i in range(0,len(TIPO)):
               for j in range(0,NUM[i]):
@@ -388,7 +388,7 @@ def crear_usuarios(request):
 
 def crear_usuarios_definitivo(request):
     if request.user.is_authenticated:
-        if request.user.username == "madrid":
+        if request.user.is_superuser:
             print("usuarios creados")
             return render(request, "polls/welcome.html")
         else:
@@ -398,7 +398,7 @@ def crear_usuarios_definitivo(request):
 
 def cambiar_passwd(request):
     if request.user.is_authenticated:
-        if request.user.username == "madrid":
+        if request.user.is_superuser:
             borrar_usuarios=[]
             for u in User.objects.all():
                 if((u.username.split("_")[0]=="familia") | (u.username.split("_")[0]=="estudiante") | (u.username.split("_")[0]=="pas") | (u.username.split("_")[0]=="tutoría") | (u.username.split("_")[0]=="docente")):
@@ -413,7 +413,7 @@ def cambiar_passwd(request):
 
 def cambiar_passwd_definitivo(request):
     if request.user.is_authenticated:
-        if request.user.username == "madrid":
+        if request.user.is_superuser:
             for u in User.objects.all():
                 if((u.username.split("_")[0]=="familia") | (u.username.split("_")[0]=="estudiante") | (u.username.split("_")[0]=="pas") | (u.username.split("_")[0]=="tutoría") | (u.username.split("_")[0]=="docente")):
                     new_passwd=str(random()*10000000000)[0:4]
@@ -427,7 +427,7 @@ def cambiar_passwd_definitivo(request):
 
 def gestion_usuarios(request):
     if request.user.is_authenticated:
-        if request.user.username == "madrid":
+        if request.user.is_superuser:
             user_list=User.objects.all()
             familias_list=[]
             for u in User.objects.filter(first_name='familia'):
@@ -443,7 +443,7 @@ def gestion_usuarios(request):
 
 
 def resultados(request,questionarie_id):
-    if request.user.username == "madrid":
+    if request.user.is_superuser:
         return render(request, 'polls/resultados.html',{
         'questionarie_id': questionarie_id,
         'question_list':  Questionarie.objects.get(pk=questionarie_id).question_set.all(),
@@ -550,7 +550,7 @@ def grupo_resultados(request):
         imedia=imedia+1
     valor_medio.append(media)
 
-    if request.user.username == "madrid":
+    if request.user.is_superuser:
         return render(request, 'polls/grupo_resultados.html',{
         'resultado': resultado,
         'valor_medio': valor_medio,
@@ -778,7 +778,7 @@ def crear_encuestas_pas():
     
 def crear_encuestas(request):
   if request.user.is_authenticated:
-    if request.user.username == "madrid":
+    if request.user.is_superuser:
       print("Vamos a crear la encuestas de los alumnos")
       crear_encuestas_alumnos()
       print("Vamos a crear la encuestas de los profesores")
