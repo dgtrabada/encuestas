@@ -15,3 +15,6 @@ python3 manage.py shell < vaciar_cuestionarios.py
 
 #login 10.0.0.13:8069
 #admin 10.0.0.13:8069/admin/
+
+#chequear encuestas
+# python3 manage.py shell < test2.py
