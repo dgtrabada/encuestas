@@ -501,8 +501,8 @@ def grupo_resultados(request):
 
         total_media=0
         
+        informe[0][0]=informe[0][0]+" "+SUPERGR[GRUPOS.index(lista)]
         for g in lista:
-            informe[0][0]=informe[0][0]+" "+g
             informe[0].append(g)
             informe[1].append(Questionarie.objects.get(questionarie_group=g).total)
 
