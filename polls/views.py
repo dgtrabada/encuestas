@@ -249,10 +249,11 @@ def view_pdf(request):
     h=75
     a=190
     i=0
-
-
+   
+    print(request.user.is_superuser,request.user.username)
     if request.user.is_authenticated:
-        if request.user.username=='madrid':
+        if request.user.is_superuser:
+            print(request.user.is_superuser,request.user.username)
             user_list=[]
             for u in User.objects.filter():
                 if u.username.split("_")[0]=="tutoría":
