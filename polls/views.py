@@ -295,7 +295,7 @@ def view_pdf(request):
             nline=770
             for u in user_list:
                 p.drawString(30,nline, u.username)
-                p.drawString(160,nline, u.last_name)
+                p.drawString(180,nline, u.last_name)
                 nline=nline-22
             p.showPage()
 
