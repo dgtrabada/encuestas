@@ -7,7 +7,7 @@ Bienvenido <b>{{ request.user.username }} {{ request.user.first_name }}</b>,
 <ul>
 {% for questionarie in questionarie_list %} 
 
-{% if request.user.username == "madrid" %}
+{% if request.user.is_superuser %}
 	<li><a href="{% url 'polls:detail' questionarie.id  %}">{{ questionarie.questionarie_text }}</a>  
 		{{ questionarie.questionarie_group }}
 		  {{ questionarie.id }}

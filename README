@@ -11,7 +11,7 @@ vamos como administrador (madrid) a Gestión de usuarios / creamos los usuarios 
 vamos como administrador (madrid) a Crear encuestas / Crear encuestas
 #borrar encuestas/usuarios : http://encuestas.iesquevedo.es/admin
 #vaciar encuestas
-python3 manage.py shell < vaciar_cuestionarios.py 
+#python3 manage.py shell < vaciar_cuestionarios.py 
 
 #login 10.0.0.13:8069
 #admin 10.0.0.13:8069/admin/

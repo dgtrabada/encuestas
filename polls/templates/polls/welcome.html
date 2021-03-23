@@ -5,7 +5,7 @@
     esta página es exclusiva para usuarios registrados.
 </p>
 
-{% if request.user.username == "madrid" %}
+{% if request.user.is_superuser %}
   <form action="{% url 'polls:view_pdf' %}" method="post">
   {% csrf_token %}
   <input type="submit" value="obtener archivo de docentes, tutorías y pas en pdf">

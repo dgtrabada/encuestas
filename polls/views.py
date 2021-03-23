@@ -22,7 +22,7 @@ from .models import Choice,Question,Questionarie
 from random import random
 
 TIPO=["estudiante","familia","tutoría","docente","pas"]
-NUM=[31,31,1,99,30]
+NUM=[34,34,1,99,30]
 
 SUPERGR=["ESO1","ESO2","ESO3","ESO4","BACHD1","BACHD2","BACHN","FPB","INF","COM"]
 GRUPOS=[
