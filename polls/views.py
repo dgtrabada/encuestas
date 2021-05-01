@@ -490,10 +490,10 @@ def grupo_resultados(request):
                 aux=[]
                 aux.append(q.question_text)
                 informe.append(aux)
-                for i in q.question_answer.split("usuario ="):
-                    aux=[]
-                    aux.append(i)
-                    informe.append(aux)
+                #for i in q.question_answer.split("usuario ="):
+                #    aux=[]
+                #    aux.append(i+"test")
+                #    informe.append(aux)
 
             else:    
                 aux=[]
@@ -506,11 +506,8 @@ def grupo_resultados(request):
         for g in lista:
             informe[0].append(g)
             informe[1].append(Questionarie.objects.get(questionarie_group=g).total)
-
             total_media=total_media+Questionarie.objects.get(questionarie_group=g).total
-           
             i=2
-            
             for q in Questionarie.objects.get(questionarie_group=g).question_set.all():
                 if q.question_type=="Label":
                     informe[i].append("")
@@ -524,9 +521,11 @@ def grupo_resultados(request):
                             media_nrespuestas[i][imedia]=str(float(media_nrespuestas[i][imedia])+float(q.total))
                     else:
                         for u in q.question_answer.split("usuario ="):
-                            aux=[]
-                            aux.append(u+g)
-                            informe.append(aux)
+                            if(len(u.split(";"))>1):
+                              if(len(u.split(";")[1]) > 3):
+                                aux=[]
+                                aux.append(u.split(";")[1])
+                                informe.append(aux)
 #                            if q.question_text=="OBSERVACIONES":
 #                    for i in q.question_answer.split("usuario ="):
 #                        aux=[]
